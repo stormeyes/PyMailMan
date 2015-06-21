@@ -3,6 +3,7 @@ __author__ = 'kongkongyzt'
 
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 class PyMailer():
     def __init__(self, host, user, password, postfix='', charset='UTF-8'):
@@ -14,12 +15,20 @@ class PyMailer():
         self.status = False
         self.errMsg = ''
 
-    def send(self, recieverList, mailTitle, mailContent):
+    def send(self, recieverList, mailTitle, mailContent, *attachment):
         me=self.user+"<"+self.user+"@"+self.postfix+">"
-        msg = MIMEText(mailContent, _subtype='html', _charset=self.charset)
-        msg['Subject'] = mailTitle
-        msg['From'] = me
-        msg['To'] = ";".join(recieverList)
+        if attachment:
+            msg = MIMEMultipart()
+            for attachName in attachment:
+                attachFile = MIMEText(open(attachName, 'rb').read(), 'base64', self.charset)
+                attachFile["Content-Type"] = 'application/octet-stream'
+                attachFile["Content-Disposition"] = 'attachment; filename="{}"'.format(attachName)
+                msg.attach(attachFile)
+        else:
+            msg = MIMEText(mailContent, _subtype='html', _charset=self.charset)
+            msg['Subject'] = mailTitle
+            msg['From'] = me
+            msg['To'] = ";".join(recieverList)
         try:
             server = smtplib.SMTP()
             server.connect(self.host)
