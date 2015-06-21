@@ -5,7 +5,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-class PyMailer():
+class PyMailMan():
     def __init__(self, host, user, password, postfix='', charset='UTF-8'):
         self.host = host
         self.user = user
@@ -24,6 +24,9 @@ class PyMailer():
                 attachFile["Content-Type"] = 'application/octet-stream'
                 attachFile["Content-Disposition"] = 'attachment; filename="{}"'.format(attachName)
                 msg.attach(attachFile)
+            msg['Subject'] = mailTitle
+            msg['From'] = me
+            msg['To'] = ";".join(recieverList)
         else:
             msg = MIMEText(mailContent, _subtype='html', _charset=self.charset)
             msg['Subject'] = mailTitle
