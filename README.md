@@ -57,6 +57,7 @@ print 'OK' if mail.status else mail.errMsg
 ```
 
 + To show the image in the mail content
+
 ```python
 mail = PyMailMan(host='smtp-mail.outlook.com', user='xxxxx@outlook.com', password='xxxx')
 mail.send(
@@ -69,12 +70,12 @@ mail.send(
 )
 print 'OK' if mail.status else mail.errMsg
 ```
->
-*You need to attention that the 1 in <cid:1> means the second pictrue in your attachment,in this example is /home/kongkongyzt/c.jpg
-You should also know that once you choose one of the image in the attachment to show in the mail content by using ````<img src='cid:xx'>````,
-the image file will not present in the attachList of the mail*
 
-###common mail smtp configure sample
+You need to attention that the 1 in <cid:1> means the second pictrue in your attachment,in this example is /home/kongkongyzt/c.jpg
+You should also know that once you choose one of the image in the attachment to show in the mail content by using ````<img src='cid:xx'>````,
+the image file will not present in the attachList of the mail
+
+###Common mail smtp configure sample
 assume the email address is 1234567@xx.com and password is 12345678
 Here are some of the smtp configure example:
 
@@ -84,7 +85,7 @@ Here are some of the smtp configure example:
 PyMailMan(host='smtp.qq.com', user='1234567', password='12345678')
 ```
 
-+ Gmail Mail
++ Gmail
 
 ```python
 PyMailMan(host='smtp.gmail.com', user='1234567@gmail.com', password='12345678')
