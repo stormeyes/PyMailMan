@@ -35,6 +35,8 @@ class PyMailMan():
         try:
             server = smtplib.SMTP()
             server.connect(self.host)
+            server.ehlo()
+            server.starttls()
             server.login(self.user, self.password)
             server.sendmail(me, recieverList, msg.as_string())
             server.close()

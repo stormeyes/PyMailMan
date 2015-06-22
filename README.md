@@ -52,3 +52,24 @@ mail.send(
 )
 print 'OK' if mail.status else mail.errMsg
 ```
+
+###common mail smtp configure
+assume the email address is 1234567@xx.com and password is 12345678
+
++ QQ Mail
+
+```python
+PyMailMan(host='smtp.qq.com', user='1234567', password='12345678')
+```
+
++ Gmail Mail
+
+```python
+PyMailMan(host='smtp.gmail.com', user='1234567@gmail.com', password='12345678')
+```
+
++ Outlook
+
+```python
+mail = PyMailMan(host='smtp-mail.outlook.com', user='1234567@outlook.com', password='12345678')
+```
