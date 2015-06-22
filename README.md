@@ -2,6 +2,9 @@ PyMailMan
 ===
 A simple tool for sending mail by Python
 
+###Homepage
+https://github.com/kongkongyzt/PyMailMan
+
 ###Install
 ```sh
 sudo pip install PyMailMan
@@ -15,7 +18,7 @@ from PyMailMan import PyMailMan
 
 mail = PyMailMan(host='smtp.qq.com', user='12345678', password='12345678')
 mail.send(
-    ['783087000@qq.com'], 
+    ['3456767@qq.com','testman@gmail.com'], 
     'This is title', 
     'This is the content'
 )
@@ -29,7 +32,7 @@ from PyMailMan import PyMailMan
 
 mail = PyMailMan(host='smtp.qq.com', user='12345678', password='12345678')
 mail.send(
-    ['783087000@qq.com'],
+    ['3456767@qq.com','testman@gmail.com'],
     'This is title', 
     "<p style='color:red'>This is the content</p>"
 )
@@ -44,7 +47,7 @@ from PyMailMan import PyMailMan
 mail = PyMailMan(host='smtp.qq.com', user='12345678', password='12345678')
 #You need to write the absolute path of the file
 mail.send(
-    ['783087000@qq.com'], 
+    ['3456767@qq.com','testman@gmail.com'], 
     'This is title', 
     'This is the content',
     '/home/kongkongyzt/a.txt',
@@ -53,8 +56,9 @@ mail.send(
 print 'OK' if mail.status else mail.errMsg
 ```
 
-###common mail smtp configure
+###common mail smtp configure sample
 assume the email address is 1234567@xx.com and password is 12345678
+Here are some of the smtp configure example
 
 + QQ Mail
 
@@ -71,5 +75,5 @@ PyMailMan(host='smtp.gmail.com', user='1234567@gmail.com', password='12345678')
 + Outlook
 
 ```python
-mail = PyMailMan(host='smtp-mail.outlook.com', user='1234567@outlook.com', password='12345678')
+PyMailMan(host='smtp-mail.outlook.com', user='1234567@outlook.com', password='12345678')
 ```
