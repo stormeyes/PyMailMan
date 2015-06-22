@@ -2,20 +2,23 @@
 __author__ = 'kongkongyzt'
 
 import smtplib
+import mimetypes
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 
 class PyMailMan():
-    def __init__(self, host, user, password, postfix='', charset='UTF-8'):
+    def __init__(self, host, user, password, ports=25, postfix='', charset='UTF-8'):
         self.host = host
         self.user = user
         self.password = password
+        self.ports = ports
         self.postfix = postfix if postfix else '.'.join(host.split('.')[-2:])
         self.charset = charset
         self.status = False
         self.errMsg = ''
 
-    def send(self, recieverList, mailTitle, mailContent, *attachment):
+    def send(self, receivers, title, content, *attachment):
         me=self.user+"<"+self.user+"@"+self.postfix+">"
         if attachment:
             msg = MIMEMultipart()
@@ -24,21 +27,22 @@ class PyMailMan():
                 attachFile["Content-Type"] = 'application/octet-stream'
                 attachFile["Content-Disposition"] = 'attachment; filename="{}"'.format(attachName)
                 msg.attach(attachFile)
-            msg['Subject'] = mailTitle
+            msg.attach(MIMEText(content, _subtype='html', _charset=self.charset))
+            msg['Subject'] = title
             msg['From'] = me
-            msg['To'] = ";".join(recieverList)
+            msg['To'] = ";".join(receivers)
         else:
-            msg = MIMEText(mailContent, _subtype='html', _charset=self.charset)
-            msg['Subject'] = mailTitle
+            msg = MIMEText(content, _subtype='html', _charset=self.charset)
+            msg['Subject'] = title
             msg['From'] = me
-            msg['To'] = ";".join(recieverList)
+            msg['To'] = ";".join(receivers)
         try:
             server = smtplib.SMTP()
-            server.connect(self.host)
+            server.connect("{}:{}".format(self.host, self.ports))
             server.ehlo()
             server.starttls()
             server.login(self.user, self.password)
-            server.sendmail(me, recieverList, msg.as_string())
+            server.sendmail(me, receivers, msg.as_string())
             server.close()
             self.status = True
 

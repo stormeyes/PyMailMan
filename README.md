@@ -45,7 +45,7 @@ print 'OK' if mail.status else mail.errMsg
 from PyMailMan import PyMailMan
 
 mail = PyMailMan(host='smtp.qq.com', user='12345678', password='12345678')
-#You need to write the absolute path of the file
+#Ｒecommand to write the absolute path of the file
 mail.send(
     ['3456767@qq.com','testman@gmail.com'], 
     'This is title', 
@@ -58,7 +58,7 @@ print 'OK' if mail.status else mail.errMsg
 
 ###common mail smtp configure sample
 assume the email address is 1234567@xx.com and password is 12345678
-Here are some of the smtp configure example
+Here are some of the smtp configure example:
 
 + QQ Mail
 
@@ -77,3 +77,15 @@ PyMailMan(host='smtp.gmail.com', user='1234567@gmail.com', password='12345678')
 ```python
 PyMailMan(host='smtp-mail.outlook.com', user='1234567@outlook.com', password='12345678')
 ```
+
+###Tips
+
++ You can manual defined the ports and the prefix
+
+```python
+PyMailMan(host='smtp.gmail.com', user='1234567@gmail.com', password='12345678', ports=25, prefix='gmail.com')
+```
+
+###Feedback
+If you have any problem or issue, please contact me by opening an issue on the github homepage
+Homepage: https://github.com/kongkongyzt/PyMailMan
