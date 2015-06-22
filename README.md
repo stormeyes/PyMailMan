@@ -69,9 +69,9 @@ mail.send(
 )
 print 'OK' if mail.status else mail.errMsg
 ```
->*You need to attention that the 1 in <cid:1> means the second pictrue in your attachment,in this example is /home/kongkongyzt/c.jpg *
-
->*You should also know that once you choose one of the image in the attachment to show in the mail content by using ````<img src='cid:xx'>````,
+>
+*You need to attention that the 1 in <cid:1> means the second pictrue in your attachment,in this example is /home/kongkongyzt/c.jpg
+You should also know that once you choose one of the image in the attachment to show in the mail content by using ````<img src='cid:xx'>````,
 the image file will not present in the attachList of the mail*
 
 ###common mail smtp configure sample
