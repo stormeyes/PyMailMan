@@ -45,7 +45,7 @@ print 'OK' if mail.status else mail.errMsg
 from PyMailMan import PyMailMan
 
 mail = PyMailMan(host='smtp.qq.com', user='12345678', password='12345678')
-#Ｒecommand to write the absolute path of the file
+#Recommand to write the absolute path of the file
 mail.send(
     ['3456767@qq.com','testman@gmail.com'], 
     'This is title', 
@@ -55,6 +55,24 @@ mail.send(
 )
 print 'OK' if mail.status else mail.errMsg
 ```
+
++ To show the image in the mail content
+```python
+mail = PyMailMan(host='smtp-mail.outlook.com', user='xxxxx@outlook.com', password='xxxx')
+mail.send(
+    ['783087000@qq.com'],
+    'This is title',
+    "Hello,The following image is the photo of last vacation in China, do you <span style='color:red'>like</span> it ? <img src='cid:1'>",
+    "/home/kongkongyzt/a.jpg",
+    "/home/kongkongyzt/b.docx",
+    "/home/kongkongyzt/c.jpg"
+)
+print 'OK' if mail.status else mail.errMsg
+```
+>*You need to attention that the 1 in <cid:1> means the second pictrue in your attachment,in this example is /home/kongkongyzt/c.jpg *
+
+>*You should also know that once you choose one of the image in the attachment to show in the mail content by using ````<img src='cid:xx'>````,
+the image file will not present in the attachList of the mail*
 
 ###common mail smtp configure sample
 assume the email address is 1234567@xx.com and password is 12345678
